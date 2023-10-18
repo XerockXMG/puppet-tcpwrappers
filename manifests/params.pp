@@ -16,14 +16,14 @@
 #
 class tcpwrappers::params {
 
-  $allow_file = $::operatingsystem ? {
+  $allow_file = $facts['os']['name'] ? {
     default => '/etc/hosts.allow',
   }
 
   $allow_source   = '' # lint:ignore:empty_string_assignment
   $allow_template = '' # lint:ignore:empty_string_assignment
 
-  $deny_file = $::operatingsystem ? {
+  $deny_file = $facts['os']['name'] ? {
     default => '/etc/hosts.deny',
   }
 
@@ -32,24 +32,24 @@ class tcpwrappers::params {
 
   # Application related parameters
 
-  $package = $::operatingsystem ? {
+  $package = $facts['os']['name'] ? {
     /(?i:Ubuntu|Debian|Mint)/ => 'libwrap0',
     default                   => 'setup',
   }
 
-  $config_dir = $::operatingsystem ? {
+  $config_dir = $facts['os']['name'] ? {
     default => '/etc',
   }
 
-  $config_file_mode = $::operatingsystem ? {
+  $config_file_mode = $facts['os']['name'] ? {
     default => '0644',
   }
 
-  $config_file_owner = $::operatingsystem ? {
+  $config_file_owner = $facts['os']['name'] ? {
     default => 'root',
   }
 
-  $config_file_group = $::operatingsystem ? {
+  $config_file_group = $facts['os']['name'] ? {
     default => 'root',
   }
 
